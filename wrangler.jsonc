@@ -1,0 +1,8 @@
+{
+  "$schema": "https://unpkg.com/wrangler@4.164.0/config-schema.json",
+  "name": "losell-nu",
+  "compatibility_date": "2026-11-17",
+  // Static site: everything in this folder except what .assetsignore lists.
+  "assets": { "directory": "." },
+  "routes": [{ "pattern": "losell.nu", "custom_domain": true }]
+}

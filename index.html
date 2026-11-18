@@ -147,6 +147,55 @@
     .arrow { color: var(--accent-2); transition: transform 0.2s ease; }
     .members a:hover .arrow { transform: translateX(4px); }
 
+    .wedding {
+      display: block;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--surface);
+      color: inherit;
+      text-decoration: none;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+    .wedding:hover,
+    .wedding:focus-visible { border-color: var(--accent); transform: translateY(-2px); }
+    .wedding:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+    .wedding-photos {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: clamp(9rem, 32vw, 13rem);
+      gap: 3px;
+    }
+    .wedding-photos img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      background: var(--line);
+    }
+
+    .wedding-body {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.1rem 1.25rem 1.25rem;
+    }
+    .wedding-title {
+      margin: 0;
+      font-family: "Fraunces", Georgia, serif;
+      font-size: 1.6rem;
+      line-height: 1.2;
+    }
+    .wedding-title .amp { color: var(--accent); font-style: italic; }
+    .wedding-meta {
+      margin: 0.25rem 0 0;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .wedding .arrow { margin-left: auto; font-size: 1.25rem; }
+    .wedding:hover .arrow { transform: translateX(4px); }
+
     footer {
       width: 100%;
       max-width: 44rem;
@@ -159,9 +208,12 @@
     @media (max-width: 420px) {
       .url { display: none; }
       .arrow { margin-left: auto; }
+      .wedding-photos { grid-template-columns: 2fr 1fr; }
+      .wedding-photos img:last-child { display: none; }
     }
     @media (prefers-reduced-motion: reduce) {
-      .members a, .arrow { transition: none; }
+      .members a, .arrow, .wedding { transition: none; }
+      .wedding:hover, .wedding:focus-visible { transform: none; }
     }
   </style>
 </head>
@@ -183,6 +235,23 @@
         </a>
       </li>
     </ul>
+
+    <h2>Bröllop</h2>
+    <a class="wedding" href="https://bröllop.losell.nu">
+      <div class="wedding-photos">
+        <img src="https://bröllop.losell.nu/thumbs/annalindstromfoto220709_019.jpg" alt="Mikael och Fredrika går hand i hand under rosenbågarna" loading="lazy" />
+        <img src="https://bröllop.losell.nu/thumbs/annalindstromfoto220709_027.jpg" alt="" loading="lazy" />
+        <img src="https://bröllop.losell.nu/thumbs/annalindstromfoto220709_026.jpg" alt="" loading="lazy" />
+      </div>
+      <div class="wedding-body">
+        <div>
+          <p class="wedding-title">Mikael <span class="amp">&amp;</span> Fredrika</p>
+          <p class="wedding-meta">9 juli 2022 · Wij Trädgårdar, Ockelbo</p>
+          <p class="wedding-meta">bröllop.losell.nu</p>
+        </div>
+        <span class="arrow" aria-hidden="true">→</span>
+      </div>
+    </a>
   </main>
 
   <footer>© <span id="year">2026</span> Familjen Losell</footer>
