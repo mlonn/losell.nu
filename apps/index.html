@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Losell Appar</title>
+  <meta name="description" content="Apparna som familjen Losell har byggt: Sweat Builder och Listfull." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📱</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* Samma färger som losell.nu: plommon → turkos från apparnas ikoner. */
+    :root {
+      --background: #fbf8f9;
+      --surface: #ffffff;
+      --color: #2a0a14;
+      --muted: #6b4a55;
+      --accent: #7b1b38;
+      --accent-2: #07959e;
+      --gradient: linear-gradient(90deg, #7b1b38, #09cdda);
+      --line: rgba(123, 27, 56, 0.15);
+      --chip: rgba(123, 27, 56, 0.06);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --background: #1c0a12;
+        --surface: #2a1019;
+        --color: #f6eef1;
+        --muted: #b99aa5;
+        --accent: #dd6589;
+        --accent-2: #09cdda;
+        --gradient: linear-gradient(90deg, #dd6589, #09cdda);
+        --line: rgba(246, 238, 241, 0.15);
+        --chip: rgba(246, 238, 241, 0.06);
+      }
+    }
+    :root[data-theme="dark"] {
+      --background: #1c0a12;
+      --surface: #2a1019;
+      --color: #f6eef1;
+      --muted: #b99aa5;
+      --accent: #dd6589;
+      --accent-2: #09cdda;
+      --gradient: linear-gradient(90deg, #dd6589, #09cdda);
+      --line: rgba(246, 238, 241, 0.15);
+      --chip: rgba(246, 238, 241, 0.06);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html, body { margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      background: var(--background);
+      color: var(--color);
+      font-family: "Source Code Pro", ui-monospace, monospace;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+    body::before {
+      content: "";
+      flex: none;
+      height: 6px;
+      background: var(--gradient);
+    }
+
+    main {
+      flex: 1;
+      width: 100%;
+      max-width: 44rem;
+      margin: 0 auto;
+      padding: clamp(4rem, 14vh, 9rem) 1rem 3rem;
+    }
+
+    .eyebrow {
+      margin: 0 0 1rem;
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .eyebrow a { color: inherit; text-decoration: none; }
+    .eyebrow a:hover, .eyebrow a:focus-visible { color: var(--accent); }
+
+    h1 {
+      margin: 0;
+      font-family: "Fraunces", Georgia, serif;
+      font-weight: 600;
+      font-size: clamp(3.5rem, 15vw, 7.5rem);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+    }
+    h1 .dot { color: var(--accent-2); }
+
+    .lead {
+      margin: 1.75rem 0 0;
+      max-width: 32rem;
+      font-size: 1.05rem;
+      color: var(--muted);
+    }
+
+    .apps {
+      list-style: none;
+      margin: 4rem 0 0;
+      padding: 0;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .app {
+      position: relative;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0 1.25rem;
+      padding: 1.25rem;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--surface);
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+    .app:has(.app-link:hover),
+    .app:has(.app-link:focus-visible) { border-color: var(--accent); transform: translateY(-2px); }
+
+    .icon {
+      display: block;
+      width: 4.5rem;
+      height: 4.5rem;
+      border-radius: 22.5%;
+      box-shadow: 0 1px 2px rgba(42, 10, 20, 0.15), 0 4px 14px rgba(42, 10, 20, 0.12);
+    }
+
+    .app-head {
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.25rem 0.75rem;
+    }
+    .app h2 {
+      margin: 0;
+      font-family: "Fraunces", Georgia, serif;
+      font-weight: 600;
+      font-size: 1.6rem;
+      line-height: 1.2;
+    }
+    .status {
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-2);
+    }
+    .status.soon { color: var(--accent); }
+
+    .app-link {
+      color: inherit;
+      text-decoration: none;
+    }
+    /* Hela kortet blir klickbart. */
+    .app-link::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 6px;
+    }
+    .app-link:focus-visible { outline: none; }
+    .app-link:focus-visible::after { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+    .desc {
+      margin: 0.35rem 0 0;
+      color: var(--muted);
+    }
+
+    .chips {
+      list-style: none;
+      margin: 0.85rem 0 0;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .chips li {
+      padding: 0.1rem 0.55rem;
+      border-radius: 999px;
+      background: var(--chip);
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .app-foot {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .arrow { margin-left: auto; color: var(--accent-2); font-size: 1.25rem; transition: transform 0.2s ease; }
+    .app:has(.app-link:hover) .arrow { transform: translateX(4px); }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      width: 100%;
+      max-width: 44rem;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    footer a { color: inherit; }
+    footer a:hover, footer a:focus-visible { color: var(--accent); }
+
+    @media (max-width: 480px) {
+      .app { grid-template-columns: 1fr; }
+      .icon { margin-bottom: 1rem; width: 4rem; height: 4rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .app, .arrow { transition: none; }
+      .app:has(.app-link:hover), .app:has(.app-link:focus-visible) { transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="eyebrow"><a href="/">losell.nu</a> / appar</p>
+    <h1>Appar<span class="dot">.</span></h1>
+    <p class="lead">Det vi har byggt för att få vardagen och träningen att flyta. Hemmagjort, utan reklam.</p>
+
+    <!-- En <li class="app"> per app. Utan länk blir kortet inte klickbart. -->
+    <ul class="apps">
+      <li class="app">
+        <img class="icon" src="/apps/icons/sweat-builder.svg" alt="" width="72" height="72" />
+        <div>
+          <div class="app-head">
+            <h2><a class="app-link" href="https://sweatbuilder.lonn.xyz">Sweat Builder</a></h2>
+          </div>
+          <p class="desc">Bygg egna intervallpass och träningsplaner och kör dem på iPhone eller direkt på klockan.</p>
+          <ul class="chips" aria-label="Plattformar">
+            <li>iPhone</li>
+            <li>Apple Watch</li>
+            <li>Widgets</li>
+          </ul>
+          <div class="app-foot">
+            <span>sweatbuilder.lonn.xyz</span>
+            <span class="arrow" aria-hidden="true">→</span>
+          </div>
+        </div>
+      </li>
+
+      <li class="app">
+        <img class="icon" src="/apps/icons/listfull.svg" alt="" width="72" height="72" />
+        <div>
+          <div class="app-head">
+            <h2>Listfull</h2>
+            <span class="status soon">Under utveckling</span>
+          </div>
+          <p class="desc">Hushållets delade handlingslistor, sysslor, recept och packlistor. Det någon bockar av syns hos de andra inom sekunder.</p>
+          <ul class="chips" aria-label="Plattformar">
+            <li>iPhone</li>
+            <li>Apple Watch</li>
+            <li>Synkas via iCloud</li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </main>
+
+  <footer>
+    <a href="/">← losell.nu</a>
+    <span>© <span id="year">2026</span> Familjen Losell</span>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

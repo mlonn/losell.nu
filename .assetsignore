@@ -4,3 +4,6 @@ README.md
 wrangler.jsonc
 .wrangler
 .git
+.claude
+.DS_Store
+.idea

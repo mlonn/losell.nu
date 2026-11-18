@@ -147,6 +147,19 @@
     .arrow { color: var(--accent-2); transition: transform 0.2s ease; }
     .members a:hover .arrow { transform: translateX(4px); }
 
+    .app-icons {
+      flex: none;
+      display: flex;
+    }
+    .app-icons img {
+      display: block;
+      width: 2.75rem;
+      height: 2.75rem;
+      border-radius: 22.5%;
+      border: 2px solid var(--background);
+    }
+    .app-icons img + img { margin-left: -0.5rem; }
+
     .wedding {
       display: block;
       overflow: hidden;
@@ -231,6 +244,21 @@
           <span class="initial" aria-hidden="true">M</span>
           <span class="name">Mikael</span>
           <span class="url">mikael.losell.nu</span>
+          <span class="arrow" aria-hidden="true">→</span>
+        </a>
+      </li>
+    </ul>
+
+    <h2>Appar</h2>
+    <ul class="members">
+      <li>
+        <a href="/apps/">
+          <span class="app-icons" aria-hidden="true">
+            <img src="/apps/icons/sweat-builder.svg" alt="" width="44" height="44" />
+            <img src="/apps/icons/listfull.svg" alt="" width="44" height="44" />
+          </span>
+          <span class="name">Sweat Builder &amp; Listfull</span>
+          <span class="url">losell.nu/apps</span>
           <span class="arrow" aria-hidden="true">→</span>
         </a>
       </li>
