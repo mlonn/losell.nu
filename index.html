@@ -4,28 +4,33 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Familjen Losell</title>
-  <meta name="description" content="Familjen Losell från Göteborg." />
+  <meta name="description" content="Familjen Losell från Kållered." />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏡</text></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet" />
   <style>
+    /* Färger från Sweat Builders logga: plommon → turkos, vita bokstäver. */
     :root {
-      --background: #eee8d5;
-      --surface: #fdf6e3;
-      --color: #003440;
-      --muted: #4a6670;
-      --accent: #b58900;
-      --line: rgba(0, 52, 64, 0.15);
+      --background: #fbf8f9;
+      --surface: #ffffff;
+      --color: #2a0a14;
+      --muted: #6b4a55;
+      --accent: #7b1b38;
+      --accent-2: #07959e;
+      --gradient: linear-gradient(90deg, #7b1b38, #09cdda);
+      --line: rgba(123, 27, 56, 0.15);
     }
     @media (prefers-color-scheme: dark) {
       :root {
-        --background: #003440;
-        --surface: #00404f;
-        --color: #eee8d5;
-        --muted: #9fb3b8;
-        --accent: #e0b23a;
-        --line: rgba(238, 232, 213, 0.15);
+        --background: #1c0a12;
+        --surface: #2a1019;
+        --color: #f6eef1;
+        --muted: #b99aa5;
+        --accent: #dd6589;
+        --accent-2: #09cdda;
+        --gradient: linear-gradient(90deg, #dd6589, #09cdda);
+        --line: rgba(246, 238, 241, 0.15);
       }
     }
 
@@ -43,6 +48,12 @@
       font-family: "Source Code Pro", ui-monospace, monospace;
       font-size: 1rem;
       line-height: 1.6;
+    }
+    body::before {
+      content: "";
+      flex: none;
+      height: 6px;
+      background: var(--gradient);
     }
 
     main {
@@ -69,7 +80,7 @@
       line-height: 0.95;
       letter-spacing: -0.02em;
     }
-    h1 .dot { color: var(--accent); }
+    h1 .dot { color: var(--accent-2); }
 
     .lead {
       margin: 1.75rem 0 0;
@@ -133,7 +144,7 @@
       overflow: hidden;
       text-overflow: ellipsis;
     }
-    .arrow { color: var(--accent); transition: transform 0.2s ease; }
+    .arrow { color: var(--accent-2); transition: transform 0.2s ease; }
     .members a:hover .arrow { transform: translateX(4px); }
 
     footer {
@@ -156,7 +167,7 @@
 </head>
 <body>
   <main>
-    <p class="eyebrow">Göteborg</p>
+    <p class="eyebrow">Kållered</p>
     <h1>Losell<span class="dot">.</span></h1>
     <p class="lead">Hej! Det här är familjen Losells lilla hörna av internet.</p>
 
