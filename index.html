@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Familjen Losell</title>
+  <meta name="description" content="Familjen Losell från Göteborg." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏡</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --background: #eee8d5;
+      --surface: #fdf6e3;
+      --color: #003440;
+      --muted: #4a6670;
+      --accent: #b58900;
+      --line: rgba(0, 52, 64, 0.15);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --background: #003440;
+        --surface: #00404f;
+        --color: #eee8d5;
+        --muted: #9fb3b8;
+        --accent: #e0b23a;
+        --line: rgba(238, 232, 213, 0.15);
+      }
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html, body { margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      background: var(--background);
+      color: var(--color);
+      font-family: "Source Code Pro", ui-monospace, monospace;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    main {
+      flex: 1;
+      width: 100%;
+      max-width: 44rem;
+      margin: 0 auto;
+      padding: clamp(4rem, 14vh, 9rem) 1rem 3rem;
+    }
+
+    .eyebrow {
+      margin: 0 0 1rem;
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    h1 {
+      margin: 0;
+      font-family: "Fraunces", Georgia, serif;
+      font-weight: 600;
+      font-size: clamp(3.5rem, 15vw, 7.5rem);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+    }
+    h1 .dot { color: var(--accent); }
+
+    .lead {
+      margin: 1.75rem 0 0;
+      max-width: 32rem;
+      font-size: 1.05rem;
+      color: var(--muted);
+    }
+
+    h2 {
+      margin: 4rem 0 1rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .members {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      border-top: 1px solid var(--line);
+    }
+    .members li { border-bottom: 1px solid var(--line); }
+    .members a {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 0.25rem;
+      color: inherit;
+      text-decoration: none;
+      transition: padding 0.2s ease;
+    }
+    .members a:hover,
+    .members a:focus-visible { padding-left: 0.75rem; }
+    .members a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+    .initial {
+      flex: none;
+      display: grid;
+      place-items: center;
+      width: 2.75rem;
+      height: 2.75rem;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      font-family: "Fraunces", Georgia, serif;
+      font-weight: 600;
+      font-size: 1.25rem;
+      color: var(--accent);
+    }
+    .name {
+      font-family: "Fraunces", Georgia, serif;
+      font-size: 1.4rem;
+    }
+    .url {
+      margin-left: auto;
+      font-size: 0.85rem;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .arrow { color: var(--accent); transition: transform 0.2s ease; }
+    .members a:hover .arrow { transform: translateX(4px); }
+
+    footer {
+      width: 100%;
+      max-width: 44rem;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 420px) {
+      .url { display: none; }
+      .arrow { margin-left: auto; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .members a, .arrow { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="eyebrow">Göteborg</p>
+    <h1>Losell<span class="dot">.</span></h1>
+    <p class="lead">Hej! Det här är familjen Losells lilla hörna av internet.</p>
+
+    <h2>Hitta oss</h2>
+    <!-- Lägg till en <li> per familjemedlem som har en egen sida. -->
+    <ul class="members">
+      <li>
+        <a href="https://mikael.losell.nu">
+          <span class="initial" aria-hidden="true">M</span>
+          <span class="name">Mikael</span>
+          <span class="url">mikael.losell.nu</span>
+          <span class="arrow" aria-hidden="true">→</span>
+        </a>
+      </li>
+    </ul>
+  </main>
+
+  <footer>© <span id="year">2026</span> Familjen Losell</footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
